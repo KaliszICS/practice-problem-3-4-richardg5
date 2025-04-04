@@ -4,24 +4,32 @@ public class PracticeProblem {
 
 	}
 
-	public static void q1() {
-		//Write question 1 code here
+	public static int[] recaman(int n) {
+		int[] arr = new int[Math.max(0, n)];
+		if (n > 0) {
+			recamanHelper(n, arr);
+		}
+		return arr;
 	}
 
-	public static void q2() {
-		//Write question 2 code here
-	}
+	public static void recamanHelper(int n, int[] arr) {
+		if (n == 1) {
+			arr[n - 1] = 1;
+			return;
+		}
 
-	public static void q3() {
-		//Write question 3 code here
+		recamanHelper(n - 1, arr);
+		int termResult = arr[n - 2] - n;
+		if (termResult < 0) {
+			termResult = arr[n - 2] + n;
+		} else {
+			for (int i = 0; i < n; i++) {
+				if (arr[i] == termResult) {
+					termResult = arr[n - 2] + n;
+					i = n;
+				}
+			}
+		}
+		arr[n - 1] = termResult;
 	}
-
-	public static void q4() {
-		//Write question 4 code here
-	}
-
-	public static void q5() {
-		//Write question 5 code here
-	}
-
 }
